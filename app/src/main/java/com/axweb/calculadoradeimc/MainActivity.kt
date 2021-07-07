@@ -3,6 +3,7 @@ package com.axweb.calculadoradeimc
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
 import com.axweb.calculadoradeimc.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -54,8 +55,24 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-
-
+        val inflate = menuInflater
+        inflate.inflate(R.menu.menu_principal, menu)
         return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId) {
+            R.id.reset -> {
+                val clearWeight = binding.editWeight
+                val clearHeight = binding.editHeight
+                val clearMessage = binding.message
+
+                clearWeight.setText("")
+                clearHeight.setText("")
+                clearMessage.setText("")
+            }
+        }
+
+        return super.onOptionsItemSelected(item)
     }
 }
